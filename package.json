@@ -6,7 +6,7 @@
     "sc": "shadow-cljs",
     "server": "shadow-cljs stop && shadow-cljs start",
     "start": "yarn watch:css && shadow-cljs watch app",
-    "build": "yarn clean && yarn build:css && shadow-cljs release app",
+    "build": "yarn clean && NODE_ENV=production yarn build:css && shadow-cljs release app",
     "test": "shadow-cljs compile test && node out/test.js",
     "test:watch": "shadow-cljs watch test --config-merge \"{:autorun true}\"",
     "report": "shadow-cljs run shadow.cljs.build-report app report.html",
@@ -32,7 +32,6 @@
     "zprint-clj": "~0.8.0"
   },
   "dependencies": {
-    "@tailwindcss/ui": "^0.6.2",
     "create-react-class": "~15.6.3",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
