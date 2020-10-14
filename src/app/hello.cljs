@@ -12,13 +12,13 @@
 
 (def state (r/atom {:search ""
                     :videos [{:slug "java-concurrency-primitives-part-II"
-                       :video-id "6e08c8b692c1f304dac4a5e437fb1d75"
-                       :description "Wszystko co chciałbyś wiedzieć o Java concurrency część II."
-                       :title "Java concurrency primitives część II"}
-                      {:slug "java-concurrency-primitives-part-I"
-                       :video-id "6e08c8b692c1f304dac4a5e437fb1d75"
-                       :description "Wszystko co chciałbyś wiedzieć o Java concurrency część I."
-                       :title "Java concurrency primitives część I"}]}))
+                              :video-id "6e08c8b692c1f304dac4a5e437fb1d75"
+                              :description "Wszystko co chciałbyś wiedzieć o Java concurrency część II."
+                              :title "Java concurrency primitives część II"}
+                             {:slug "java-concurrency-primitives-part-I"
+                              :video-id "6e08c8b692c1f304dac4a5e437fb1d75"
+                              :description "Wszystko co chciałbyś wiedzieć o Java concurrency część I."
+                              :title "Java concurrency primitives część I"}]}))
 
 (defn by-title [search]
   #(s/includes? (:title %) search))
@@ -30,14 +30,14 @@
   [:tr [:td slug] [:td title] [:td description]])
 
 (defn searchbox [val]
-   [:input {:type "text" :value val
-            :on-change #(update-state :search (-> % .-target .-value))}])
+  [:input {:type "text" :value val :placeholder "search phrase"
+           :on-change #(update-state :search (-> % .-target .-value))}])
 
 (defn videos-table [videos]
   [:table
    [:thead>tr [:td "slug"] [:td "title"] [:td "description"]]
    [:tbody (for [video videos]
-      ^{:key (:video-id video)} [video-row video])]])
+             ^{:key (:video-id video)} [video-row video])]])
 
 (defn hello []
   (let [{:keys [search videos]} @state]
